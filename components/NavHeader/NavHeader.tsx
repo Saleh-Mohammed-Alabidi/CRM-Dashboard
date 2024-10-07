@@ -9,7 +9,7 @@ const NavHeader = () => {
       <div className="nav-header">
         <Link href="#" className="brand-logo">
           <Image
-            src="/assets/images/CRM.webp"
+            src="/assets/images/CRM.svg"
             width="60"
             height="60"
             alt="CRM"

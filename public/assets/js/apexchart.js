@@ -1879,7 +1879,8 @@
       value: function setAttrs(el, attrs) {
         for (var key in attrs) {
           if (attrs.hasOwnProperty(key)) {
-            el.setAttribute(key, attrs[key]);
+            if(key==null || attrs[key]==null) return ;
+           try{ el.setAttribute(key, attrs[key]);}catch(e){}
           }
         }
       }

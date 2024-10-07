@@ -10304,7 +10304,7 @@ div, span, ol, ul {
   margin: 0;
   height: 100%;
   position: fixed;
-  z-index: 99999;
+  z-index: 1;
   width: 100%;
   display: flex;
   align-items: center;
@@ -10312,8 +10312,8 @@ div, span, ol, ul {
   #preloader .lds-ripple {
     display: inline-block;
     position: relative;
-    width: 80px;
-    height: 80px; }
+    width: 180px;
+    height: 180px; }
   #preloader .lds-ripple div {
     position: absolute;
     border: 4px solid var(--primary);
@@ -22913,13 +22913,13 @@ body > * {
 
 ::-webkit-scrollbar {
   width: 5px;
-  opacity: 0; }
+  opacity: 1; }
 
 /* ::-webkit-scrollbar-thumb{
 	background:  rgba(111, 133, 147, 0.0); 
 } */
 ::-webkit-scrollbar-thumb {
-  background: rgba(111, 133, 147, 0.1); }
+  background: var(--primary); }
 
 .clockpicker-popover {
   position: absolute; }

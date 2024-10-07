@@ -2,6 +2,7 @@ import NavHeader from "@/components/NavHeader/NavHeader";
 import SideBar from "@/components/SideBar/SideBar";
 import React from "react";
 import Script from "next/script";
+import { sidebarLinks } from "@/constants/sidebarLinks";
 export default function RootLayout({
   children,
 }: {
@@ -15,11 +16,12 @@ export default function RootLayout({
       <Script src="/assets/js/picker.js" strategy="afterInteractive" />
       <Script src="/assets/js/picker.date.js" strategy="afterInteractive" />
       <Script src="/assets/js/pickadate-init.js" strategy="afterInteractive" />
+      
 
       <div id="main-wrapper" className="show">
         <NavHeader />
-        <SideBar />
-        {children}
+        <SideBar sidebarLinks={sidebarLinks} />
+        <div className="content-body">{children}</div>
       </div>
     </>
   );

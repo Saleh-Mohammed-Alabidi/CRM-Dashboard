@@ -1,66 +1,51 @@
+"use client"
 import Link from "next/link";
-import React from "react";
+import { usePathname } from 'next/navigation'
 
-const SideBar = () => {
+
+
+interface Props {
+  sidebarLinks: SideBarItem[];
+}
+
+const SideBar = ({ sidebarLinks = [] }: Props) => {
+  const pathname = usePathname();
+ 
   return (
-    <>
+ 
       <div className="dlabnav">
         <div className="dlabnav-scroll">
           <ul className="metismenu mm-show" id="menu">
-            <li className="mm-active">
-              <Link href="#">
-                <i className="flaticon-025-dashboard"></i>
-                <span className="nav-text">Home</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="#">
-                <i className="flaticon-093-waving"></i>
-                <span className="nav-text">Leads</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="#">
-                <i className="fa-solid fa-gear"></i>
-
-                <span className="nav-text">Contacts</span>
-                <span className="badge badge-xs style-1 badge-danger">New</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="#">
-                <i className="flaticon-050-info"></i>
-                <span className="nav-text">Accounts</span>
-              </Link>
-            </li>
-
-            <li className="mm-active"> 
-              <a
-                className="has-arrow"
-                aria-expanded="false"
-                href="#"
+            {sidebarLinks.map((item, index) => (
+              <li
+                className={ pathname==item.link || item.active  ? "mm-active" : ""}
+                key={`SideBar_${index}`}
               >
-                <i className="flaticon-093-waving"></i>
-                <span className="nav-text">Reports</span>
-              </a>
-              <ul>
-                <li>
-                <Link href="#">Leads Report</Link>
-                </li>
-                <li>
-                <Link href="#">Contacts Report</Link>
-                </li>
-                <li>
-                <Link href="#">Accounts Report</Link>
-                </li>
-                
-              </ul>
-            </li>
+                <Link
+                  className={
+                    (item?.subItems?.length ?? 0) > 0 ? "has-arrow" : ""
+                  }
+                  aria-expanded="false"
+                  href={(item?.subItems?.length ?? 0) > 0 ? "#" : item.link}
+                >
+                  <i className={item.icon}></i>
+                  <span className="nav-text">{item.name}</span>
+                </Link>
+                {(item?.subItems?.length ?? 0) > 0 && (
+                  <ul>
+                    {item?.subItems?.map((subItem, _index) => (
+                      <li key={`SideBar_SubItem_${_index}`}>
+                        <Link href={subItem.link}> {subItem.name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
           </ul>
-         
         </div>
       </div>
-    </>
+    
   );
 };
 
